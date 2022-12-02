@@ -1,0 +1,238 @@
+@import url(../vendor/normalize.css);
+@import url(../vendor/fonts.css);
+@import url(../blocks/page/page.css);
+@import url(../blocks/page/__container/page__container.css);
+
+
+
+.header {
+  margin: 45px auto 0 auto;
+  padding-bottom: 41px;
+  max-width: calc(100% - 400px);
+  border-bottom: 1px solid #545454;
+}
+
+@media screen and (max-width: 1279px) {
+  .header {
+    max-width: 880px;
+  }
+}
+
+@media screen and (max-width: 706px) {
+  .header {
+    margin-top: 28px;
+    padding-bottom: 31.6px;
+  }
+}
+
+.header__logo {
+  background-image: url(../images/logo.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 142px;
+  height: 33px;
+  margin: 0;
+}
+
+@media screen and (min-width: 882px) and (max-width: 936px) {
+  .header__logo {
+    margin-left: calc(0px + (0 - 27) * (100vw - 936px) / (936 - 882));
+  }
+}
+
+@media screen and (max-width: 882px) {
+  .header__logo {
+    margin-left: 27px;
+  }
+}
+
+@media screen and (max-width: 706px){
+  .header__logo {
+    width: 103.74px;
+    height: 24.4px;
+  }
+}
+
+
+.profile {
+  margin: 40px auto 0 auto;
+  max-width: calc(100% - 400px);
+  display: flex;
+  flex-direction: row;
+}
+
+
+@media screen and (max-width: 1279px) {
+  .profile {
+    max-width: 880px;
+
+  }
+}
+
+@media screen and (max-width: 922px) {
+  .profile {
+    max-width: auto;
+    margin: 40px 19px 0 19px;
+  }
+}
+
+@media screen and (max-width: 706px) {
+  .profile {
+    margin-top: 42px;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+
+
+
+
+
+.profile__avatar {
+  background-image: url(../images/image.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+  margin: 0;
+}
+
+
+.profile__info {
+  margin: 0 0 0 30px;
+  display: grid;
+  max-height: 73px;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: 39px 18px;
+  grid-template-areas:
+    "name button"
+    "specialization .";
+  column-gap: 18px;
+  row-gap: 16px;
+  align-self: center;
+}
+
+@media screen and (max-width: 706px) {
+  .profile__info {
+    margin: 26px 0 36px 0;
+    text-align: center;
+    align-items: center;
+    column-gap: 10px;
+    row-gap: 14px;
+    margin: 26px auto 36px 245px;
+    grid-template-rows: 26px 14px;
+  }
+}
+
+@media screen and (max-width: 706px) and (min-width: 320px) {
+  .profile__info {
+    margin-left: calc(49px + (245 - 49) * (100vw - 320px) / (706 - 320));
+  }
+}
+
+
+@media screen and (max-width: 320px) {
+  .profile__info {
+    margin: 26px auto 36px 49px;
+
+  }
+}
+
+
+
+
+
+.profile__user-name {
+  margin: 0;
+  grid-area: name;
+  align-self: baseline;
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 48px;
+  max-width: 294px;
+}
+
+
+@media screen and (max-width: 706px) {
+  .profile__user-name {
+    font-size: 27px;
+    line-height: 32.68px;
+  }
+}
+
+.profile__user-specialization {
+  margin: 0;
+  grid-area: specialization;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+@media screen and (max-width: 706px) {
+  .profile__user-specialization  {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+
+.profile__edit-button {
+  margin: 0;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #FFFFFF;
+  background-image: url(../images/edit\ button.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #000000;
+  grid-area: button;
+  align-self: baseline;
+  transition: 0.3s ease;
+}
+
+.profile__edit-button:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 706px){
+  .profile__edit-button {
+    height:18px;
+    width: 18px;
+  }
+}
+
+
+
+.profile__add-button {
+  margin: 0 0 0 auto;
+  padding: 0;
+  width: 150px;
+  height: 50px;
+  border: 2px solid #FFFFFF;
+  background-image: url(../images/add\ button.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #000000;
+  transition: 0.3s ease;
+  align-self: center;
+}
+
+.profile__add-button:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+
+@media screen and (max-width: 706px) {
+  .profile__add-button {
+    width: 282px;
+    margin-right: auto;
+    background-size: 16px;
+  }
+}
