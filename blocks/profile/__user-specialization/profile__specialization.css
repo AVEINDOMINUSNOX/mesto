@@ -1,0 +1,14 @@
+.profile__user-specialization {
+  margin: 0;
+  grid-area: specialization;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+@media screen and (max-width: 706px) {
+  .profile__user-specialization  {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

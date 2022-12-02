@@ -1,0 +1,28 @@
+.header__logo {
+  background-image: url(../../../images/logo.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 142px;
+  height: 33px;
+  margin: 0;
+}
+
+@media screen and (min-width: 882px) and (max-width: 936px) {
+  .header__logo {
+    margin-left: calc(0px + (0 - 27) * (100vw - 936px) / (936 - 882));
+  }
+}
+
+@media screen and (max-width: 882px) {
+  .header__logo {
+    margin-left: 27px;
+  }
+}
+
+@media screen and (max-width: 706px) {
+  .header__logo {
+    width: 103.74px;
+    height: 24.4px;
+  }
+}
