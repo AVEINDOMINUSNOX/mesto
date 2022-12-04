@@ -51,6 +51,14 @@
   position: relative;
 }
 
+
+@media screen and (max-width:706px) {
+  .popup__content {
+    width: 282px;
+  }
+}
+
+
 .popup__title {
   margin: 34px auto 0 36px;
   font-weight: 900;
@@ -59,6 +67,15 @@
   color: #000000;
   max-height: 23px;
 }
+
+@media screen and (max-width:706px) {
+  .popup__title {
+    font-size: 18px;
+    line-height: 22px;
+    margin: 25px auto 0 22px;
+  }
+}
+
 
 .popup__close-button {
   width: 32px;
@@ -74,8 +91,25 @@
   position: absolute;
   top: -40px;
   left: calc(100% + 8px);
-  transition: 0.5s ease;
+  transition: 0.3s ease;
 }
+
+.popup__close-button:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+@media screen and (max-width:706px) {
+  .popup__close-button {
+    width: 20px;
+    height: 20px;
+    top: -32px;
+    left: calc(100% - 20px);
+  }
+}
+
+
+
 
 .popup__input-container {
   max-width: 358px;
@@ -83,6 +117,16 @@
   padding: 0;
   border: 0;
 }
+
+@media screen and (max-width:706px) {
+  .popup__input-container {
+  margin: 75px auto 0 auto;
+  max-width: 238px;
+  }
+}
+
+
+
 
 .popup__input {
   width: 100%;
@@ -102,9 +146,18 @@
   margin-top: 30px;
 }
 
+@media screen and (max-width:706px) {
+  .popup__input{
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+
+
 .popup__save-button {
   width: calc(100% - 72px);
-  min-height: 50px;
+  height: 50px;
   margin: 48px 36px 37px 36px;
   padding: 0;
   background: #000000;
@@ -114,4 +167,21 @@
   transition: 0.5s linear;
   border: none;
   outline: none;
+  transition: 0.3s ease;
+}
+
+
+.popup__save-button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+@media screen and (max-width:706px) {
+  .popup__save-button{
+    width: calc(100% - 44px);
+    height: 46px;
+    margin: 45px 22px 25px 22px;
+    font-size: 14px;
+    line-height: 17px;
+  }
 }
