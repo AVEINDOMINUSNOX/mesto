@@ -16,23 +16,102 @@
 @import url(../blocks/profile/__edit-button/profile__edit-button.css);
 @import url(../blocks/profile/__add-button/profile__add-button.css);
 
+.elements {
+  margin: 0 auto 66px;
+  width: calc(100% - 400px);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 280px));
+  grid-column-gap: 18px;
+  grid-row-gap: 20px;
+  justify-content: center;
+}
 
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0, 0.5);
+}
 
+.popup__container {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.popup__content {
+  width: 430px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  color: #000000;
+  position: relative;
+}
 
+.popup__title {
+  margin: 34px auto 0 36px;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  color: #000000;
+  max-height: 23px;
+}
 
+.popup__close-button {
+  width: 32px;
+  height: 32px;
+  margin: 0;
+  padding: 0;
+  background-image: url(../images/Close\ Icon.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #000000;
+  border: 0;
+  outline: none;
+  position: absolute;
+  top: -40px;
+  left: calc(100% + 8px);
+  transition: 0.5s ease;
+}
 
+.popup__input-container {
+  max-width: 358px;
+  margin: 53px auto 0 auto;
+  padding: 0;
+  border: 0;
+}
 
+.popup__input {
+  width: 100%;
+  margin: 0;
+  padding: 0 0 9px 0;
+  border: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  box-sizing: border-box;
+  outline: none;
+}
 
+.popup__input:last-child {
+  margin-top: 30px;
+}
 
-
-
-
-
-
-
-
-
-
-
-
+.popup__save-button {
+  width: calc(100% - 72px);
+  min-height: 50px;
+  margin: 48px 36px 37px 36px;
+  padding: 0;
+  background: #000000;
+  font-size: 18px;
+  line-height: 22px;
+  color: #ffffff;
+  transition: 0.5s linear;
+  border: none;
+  outline: none;
+}
