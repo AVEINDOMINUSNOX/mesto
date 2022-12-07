@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="./pages/index.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>mesto</title>
+  <script async src="./scripts/script.js"></script>
 </head>
 
 <body class="page">
@@ -16,45 +17,72 @@
     </header>
 
     <main class="content">
+
       <section class="profile">
         <div class="profile__avatar"></div>
         <div class="profile__info">
-          <h1 class="profile__user-name"> Жак-Ив Кусто</h1>
+          <h1 class="profile__user-name">Жак-Ив Кусто</h1>
           <p class="profile__user-specialization">Исследователь океана</p>
-          <button type="button" class="profile__edit-button"></button>
+          <button type="submit" class="profile__edit-button"></button>
         </div>
         <button type="button" class="profile__add-button"></button>
       </section>
 
       <section class="elements">
+        <div class="elements__item">
+          <img src="./images/Карачаевск.png" class="elements__image" alt="Христианский храм,
+          возведённый в 965 году на территории современной Карачаево-Черкессии.">
+          <h3 class="elements__name">Карачаевск</h3>
+          <button type="submit" class="elements__like-button"></button>
+        </div>
+        <div class="elements__item">
+          <img src="./images/гора Эльбрус.png" class="elements__image" alt="Эльбрус на фоне заката">
+          <h3 class="elements__name">Гора Эльбрус</h3>
+          <button type="submit" class="elements__like-button"></button>
+        </div>
+        <div class="elements__item">
+          <img src="./images/Домбай.png" class="elements__image" alt="гора Белалакая - вершина западной
+          части главного хребта Большого Кавказа.">
+          <h3 class="elements__name">Домбай</h3>
+          <button type="submit" class="elements__like-button"></button>
+        </div>
+        <div class="elements__item">
+          <img src="./images/гора Эльбрус.png" class="elements__image" alt="Эльбрус на фоне заката">
+          <h3 class="elements__name">Гора Эльбрус</h3>
+          <button type="submit" class="elements__like-button"></button>
+        </div>
+        <div class="elements__item">
+          <img src="./images/Домбай.png" class="elements__image" alt="гора Белалакая - вершина западной
+          части главного хребта Большого Кавказа.">
+          <h3 class="elements__name">Домбай</h3>
+          <button type="submit" class="elements__like-button"></button>
+        </div>
+        <div class="elements__item">
+          <img src="./images/Карачаевск.png" class="elements__image" alt="Христианский храм,
+          возведённый в 965 году на территории современной Карачаево-Черкессии.">
+          <h3 class="elements__name elements__name_status_desktop">Карачаево-Черкессия</h3>
+          <h3 class="elements__name elements__name_status_mobile">Карачаевск</h3>
+          <button type="submit" class="elements__like-button"></button>
+        </div>
       </section>
-      <footer class="footer">
-        <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
-      </footer>
 
+      <!--<footer class="footer">
+        <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+      </footer>-->
 
       <div class="popup">
         <div class="popup__container">
           <button type="button" class="popup__close-button"></button>
           <h2 class="popup__title">Редактировать профиль</h2>
           <form class="popup__input-container">
-            <input type="text" name="name" class="popup__input" value="Жак-Ив Кусто">
-            <input type="text   " name="specialization" class="popup__input" value="Исследователь океана">
-          </form>
-          <button type="submit" class="popup__save-button">Сохранить</button>
+            <input type="text" name="name" class="popup__input popup__input_name" placeholder="Имя пользователя">
+            <input type="text   " name="specialization" class="popup__input popup__input_specialization"
+              placeholder="Специализация пользователя">
+            <button type="submit" class="popup__save-button">Сохранить</button>
           </form>
         </div>
       </div>
-
-
-
-
-
-
     </main>
-
-
-
   </div>
 
 

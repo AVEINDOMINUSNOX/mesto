@@ -1,6 +1,16 @@
-.popup__container {
-  min-height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
+  .popup__container{
+    width: 430px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    color: #000000;
+    position: relative;
+  }
+
+  @media screen and (max-width:706px) {
+    .popup__container {
+      width: 282px;
+    }
+  }
+

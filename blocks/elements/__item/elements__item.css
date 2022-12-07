@@ -1,0 +1,14 @@
+.elements__item {
+  width: 282px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: white;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(3, auto);
+  grid-template-areas:
+    "image image"
+    "image image"
+    "name button";
+}
+
