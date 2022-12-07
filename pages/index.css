@@ -25,7 +25,6 @@
 @import url(../blocks/elements/__name/_status/elements__name_status_mobile.css);
 @import url(../blocks/elements/__like-button/elements__like-button.css);
 
-
 /*Блок popup*/
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
@@ -36,19 +35,6 @@
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__save-button/popup__save-buttom.css);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*Блок footer*/
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__copyright/footer__copyright.css)
