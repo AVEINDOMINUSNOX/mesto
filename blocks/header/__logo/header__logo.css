@@ -1,5 +1,5 @@
 .header__logo {
-  background-image: url(../../../images/logo.png);
+  background-image: url(../../../images/logo.svg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -7,6 +7,9 @@
   height: 33px;
   margin: 0;
 }
+
+/*Полностью согласен, что выглядит как тень на плетень, но как иначе реализовать
+плавное уменьшение отступа и нужно ли это в принципе? Спасибо */
 
 @media screen and (min-width: 882px) and (max-width: 936px) {
   .header__logo {

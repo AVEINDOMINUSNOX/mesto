@@ -4,10 +4,11 @@
   width: 150px;
   height: 50px;
   border: 2px solid #FFFFFF;
-  background-image: url(../../../images/add\ button.png);
+  border-radius: 2px;
+  background-image: url(../../../images/add\ button.svg);
   background-repeat: no-repeat;
   background-position: center;
-  background-color: #000000;
+  background-color: transparent;
   transition: 0.3s ease;
   align-self: center;
 }
