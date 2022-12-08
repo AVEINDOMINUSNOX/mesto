@@ -7,22 +7,9 @@ const popupCloseButton = popup.querySelector('.popup__close-button');
 
 let nameProfile = profile.querySelector('.profile__user-name');
 let jobProfile = profile.querySelector('.profile__user-specialization');
-/*let formElement = popup.querySelector('.popup__input-container');
- Раз мы уже указали имя в html, здесь уже можно не указывать?
- код работает и так, и так*/
-let nameInput = popup.querySelector('.popup__input_name');
-let jobInput = popup.querySelector('.popup__input_specialization');
-let itemName = pageContainer.querySelector('.itemName');
-
-/*Я уже не могу придумать как иначе реализовать изменение названия последней карточке при
-изменении ширины экрана)) */
-function change(){
- if (document.documentElement.clientWidth > 620){
-  document.getElementById("itemName").textContent = "Карачаево-Черкесия";
-}else{
-  document.getElementById("itemName").textContent = "Карачаевск";
-}
- }
+let formElement = popup.querySelector('.popup__input-container');
+let nameInput = popup.querySelector('.popup__input_type_name');
+let jobInput = popup.querySelector('.popup__input_type_specialization');
 
 function openPopup() {
   popup.classList.add('popup_open');
@@ -44,7 +31,7 @@ function savePopup(evt) {
 profileEditButton.addEventListener('click', openPopup);
 popupCloseButton.addEventListener('click', closePopup);
 formElement.addEventListener('submit', savePopup);
-window.addEventListener("resize", change);
+
 
 
 /*Реализовал закрытие popup нажатием на любую область, кроме как popup__container, но потому увидел,
