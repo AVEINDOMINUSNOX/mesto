@@ -8,15 +8,6 @@
   margin: 0;
 }
 
-/*Полностью согласен, что выглядит как тень на плетень, но как иначе реализовать
-плавное уменьшение отступа и нужно ли это в принципе? Спасибо */
-
-@media screen and (min-width: 882px) and (max-width: 936px) {
-  .header__logo {
-    margin-left: calc(0px + (0 - 27) * (100vw - 936px) / (936 - 882));
-  }
-}
-
 @media screen and (max-width: 882px) {
   .header__logo {
     margin-left: 27px;
