@@ -36,10 +36,9 @@
             id="edit-close-button"></button>
           <h2 class="popup__title">Редактировать профиль</h2>
           <form name="edit-form-element" class="popup__input-container">
-            <input type="text" id="edit-name-input" name="name" class="popup__input"
-              placeholder="Имя пользователя">
-            <input type="text" id="edit-specialization-input" name="specialization"
-              class="popup__input" placeholder="Специализация пользователя">
+            <input type="text" id="edit-name-input" name="name" class="popup__input" placeholder="Имя пользователя">
+            <input type="text" id="edit-specialization-input" name="specialization" class="popup__input"
+              placeholder="Специализация пользователя">
             <button type="submit" aria-label="Кнопка сохранить" id="edit-save-button"
               class="popup__save-button">Сохранить</button>
           </form>
@@ -52,29 +51,38 @@
             id="add-close-button"></button>
           <h2 class="popup__title">Новое место</h2>
           <form name="add-form-element" class="popup__input-container">
-            <input type="text" id="add-place-input" name="place" class="popup__input"
-              placeholder="Название">
-            <input type="text" id="add-link-input" name="link" class="popup__input"
-              placeholder="Ссылка на картинку">
+            <input type="text" id="add-place-input" name="place" class="popup__input" placeholder="Название">
+            <input type="text" id="add-link-input" name="link" class="popup__input" placeholder="Ссылка на картинку">
             <button type="submit" aria-label="Кнопка создать" class="popup__save-button"
               id="add-save-button">Создать</button>
           </form>
         </div>
       </div>
 
+      <div class="popup popup_type_img" id="img-form-container">
+        <figure class=" popup__img-container">
+          <button type="button" aria-label="Кнопка закрытия развернутой картинки" class="popup__close-button"
+            id="img-close-button"></button>
+          <img src="№" alt="Описание фотокарточки" class="popup__img-fullscreen">
+          <figcaption class="popup__img-title"></figcaption>
+        </figure>
+      </div>
 
+
+
+    </main>
   </div>
-  </main>
   <footer class="footer">
     <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
   </footer>
-  </div>
+
 
   <template id="item-template">
     <article class="item">
+      <button type="button" aria-label="Кнопка удаления карточки" id="delete-button" class="item__del-button"></button>
       <img src="" class="item__image" alt="">
       <h2 class="item__name"></h2>
-      <button type="button" aria-label="Кнопка лайка" class="item__like-button"></button>
+      <button type="button" aria-label="Кнопка лайка" id="like-button" class="item__like-button"></button>
     </article>
   </template>
 
