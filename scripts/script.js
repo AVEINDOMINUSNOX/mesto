@@ -4,30 +4,29 @@ const profile = pageContainer.querySelector('.profile');
 const profileEditButton = profile.querySelector('.profile__edit-button');
 const profileAddButton = profile.querySelector('.profile__add-button');
 
-const popup = pageContainer.querySelector('.popup');
-const editPopup = pageContainer.querySelector('#edit-form-container');
-const addPopup = pageContainer.querySelector('#add-form-container');
+const profilePopup = pageContainer.querySelector('#profile-form-container');
+const cardsPopup = pageContainer.querySelector('#cards-form-container');
 const imgPopup = pageContainer.querySelector('#img-form-container');
 
-const editCloseButton = editPopup.querySelector('#edit-close-button');
-const addCloseButton = addPopup.querySelector("#add-close-button");
+const profileCloseButton = profilePopup.querySelector('#profile-close-button');
+const cardsCloseButton = cardsPopup.querySelector("#cards-close-button");
 
 const imgCloseButton = imgPopup.querySelector('#img-close-button');
 const fullscreenImg = imgPopup.querySelector('.popup__img-fullscreen');
 const figcaptionImg = imgPopup.querySelector('.popup__img-title');
 
-const itemTemplate = document.querySelector('#item-template');
+const itemTemplate = document.querySelector('#item-template').content.querySelector('.item');
 const itemsContainer = document.querySelector('.elements');
 
 const nameProfile = profile.querySelector('.profile__user-name');
 const jobProfile = profile.querySelector('.profile__user-specialization');
-const editFormElement = editPopup.querySelector('.popup__input-container');
-const nameInput = editPopup.querySelector('#edit-name-input');
-const jobInput = editPopup.querySelector('#edit-specialization-input');
+const profileFormElement = profilePopup.querySelector('.popup__input-container');
+const nameInput = profilePopup.querySelector('#profile-name-input');
+const jobInput = profilePopup.querySelector('#profile-specialization-input');
 
-const placeInput = addPopup.querySelector('#add-place-input');
-const linkInput = addPopup.querySelector('#add-link-input');
-const addFormElement = addPopup.querySelector('.popup__input-container');
+const placeInput = cardsPopup.querySelector('#cards-place-input');
+const linkInput = cardsPopup.querySelector('#cards-link-input');
+const cardsFormElement = cardsPopup.querySelector('.popup__input-container');
 
 
 const initialCards = [
@@ -66,73 +65,68 @@ const closePopup = (popup) => {
 }
 
 /*Отображение массива фотокарточек*/
-const createItem = (nameItem, linkItem) => {
-  const item = itemTemplate.content.querySelector('.item').cloneNode(true);
-  const itemDelButton = item.querySelector('#delete-button');
-  const itemImg = item.querySelector('.item__image');
-  const itemLikeButton = item.querySelector('#like-button');
-  const itemName = item.querySelector('.item__name');
-  itemName.textContent = nameItem;
-  itemImg.src = linkItem;
-  itemImg.alt = nameItem;
+const createCard = (nameCard, linkCard) => {
+  const card = itemTemplate.cloneNode(true);
+  const cardDelButton = card.querySelector('#delete-button');
+  const cardImg = card.querySelector('.item__image');
+  const cardLikeButton =  card.querySelector('#like-button');
+  const cardName = card.querySelector('.item__name');
+  cardName.textContent = nameCard;
+  cardImg.src = linkCard;
+  cardImg.alt = nameCard;
   /*Открытие попапа фотокарточки*/
-  itemImg.addEventListener('click', () => {
+  cardImg.addEventListener('click', () => {
     openPopup(imgPopup);
-    figcaptionImg.textContent = itemName.textContent;
-    fullscreenImg.src = itemImg.src;
-    fullscreenImg.alt = itemImg.alt;
+    figcaptionImg.textContent = cardName.textContent;
+    fullscreenImg.src = cardImg.src;
+    fullscreenImg.alt = cardImg.alt;
   })
   /*Добавление лайка*/
-  itemLikeButton.addEventListener('click', () => { itemLikeButton.classList.toggle('item__like-button_status_active'); });
+  cardLikeButton.addEventListener('click', () => { cardLikeButton.classList.toggle('item__like-button_status_active'); });
   /*Удаление фотокарточки*/
-  itemDelButton.addEventListener('click', () => { item.remove(); });
+  cardDelButton.addEventListener('click', () => { card.remove(); });
   /*Закрытие фотокарточки*/
   imgCloseButton.addEventListener('click', () => { closePopup(imgPopup) })
-  return item
+  return card
 }
 
-const renderCards = (nameItem, linkItem) => {
-  itemsContainer.prepend(createItem(nameItem, linkItem))
+const renderCard = (nameCard, linkCard) => {
+  itemsContainer.prepend(createCard(nameCard, linkCard))
 }
-initialCards.forEach((item) => {
-  renderCards(item.name, item.link);
+initialCards.forEach((card) => {
+  renderCard(card.name, card.link);
 })
 
 /*Сохранение фотокарточки*/
-function saveItem(evt) {
+function saveCard(evt) {
   evt.preventDefault();
-  if (placeInput.value === "" || linkInput.value === "")
-    return alert("Данные отсутствуют. Введите данные или закройте окно");
-  initialCards.push({ name: placeInput.value, link: linkInput.value });
-  renderCards(placeInput.value, linkInput.value);
-  closePopup(addPopup);
+  renderCard(placeInput.value, linkInput.value);
+  closePopup(cardsPopup);
   evt.target.reset();
 }
 
 /*Открытие попапа добавления фотокарточек*/
-profileAddButton.addEventListener('click', () => { openPopup(addPopup) })
+profileAddButton.addEventListener('click', () => { openPopup(cardsPopup) })
 
 /*Открытия попапа редактирования данных пользователя*/
 profileEditButton.addEventListener('click', () => {
-  openPopup(editPopup);
+  openPopup(profilePopup);
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
 });
 /*Закрытие попапа добавления фотокарточек*/
-addCloseButton.addEventListener('click', () => { closePopup(addPopup) });
+cardsCloseButton.addEventListener('click', () => { closePopup(cardsPopup) });
 /*Закрытие попапап редактирования данных пользователя*/
-editCloseButton.addEventListener('click', () => { closePopup(editPopup) });
+profileCloseButton.addEventListener('click', () => { closePopup(profilePopup) });
 /*Сохранение данных пользователя через нажатие кнопки сохранить*/
-editFormElement.addEventListener('submit', (evt) => {
+profileFormElement.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  if (nameInput.value === "" || jobInput.value === "")
-    return alert("Данные отсутствуют. Введите данные или закройте окно");
   nameProfile.textContent = nameInput.value;
   jobProfile.textContent = jobInput.value;
-  closePopup(editPopup);
+  closePopup(profilePopup);
 });
 /*Сохранение фотокарточки, через нажатие кнопки создать*/
-addFormElement.addEventListener('submit', saveItem);
+cardsFormElement.addEventListener('submit', saveCard);
 
 
 

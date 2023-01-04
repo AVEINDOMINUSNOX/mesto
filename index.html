@@ -30,31 +30,31 @@
       <section class="elements">
       </section>
 
-      <div class="popup" id="edit-form-container">
+      <div class="popup" id="profile-form-container">
         <div class="popup__container">
           <button type="button" aria-label="Закрытие окна редактирования профиля" class="popup__close-button"
-            id="edit-close-button"></button>
+            id="profile-close-button"></button>
           <h2 class="popup__title">Редактировать профиль</h2>
-          <form name="edit-form-element" class="popup__input-container">
-            <input type="text" id="edit-name-input" name="name" class="popup__input" placeholder="Имя пользователя">
-            <input type="text" id="edit-specialization-input" name="specialization" class="popup__input"
-              placeholder="Специализация пользователя">
-            <button type="submit" aria-label="Кнопка сохранить" id="edit-save-button"
+          <form name="profile-form-element" class="popup__input-container">
+            <input type="text" id="profile-name-input" name="name" class="popup__input" placeholder="Имя пользователя" required>
+            <input type="text" id="profile-specialization-input" name="specialization" class="popup__input"
+              placeholder="Специализация пользователя" required>
+            <button type="submit" aria-label="Кнопка сохранить" id="profile-save-button"
               class="popup__save-button">Сохранить</button>
           </form>
         </div>
       </div>
 
-      <div class="popup" id="add-form-container">
+      <div class="popup" id="cards-form-container">
         <div class="popup__container">
           <button type="button" aria-label="Закрытие окна добавления карточки" class="popup__close-button"
-            id="add-close-button"></button>
+            id="cards-close-button"></button>
           <h2 class="popup__title">Новое место</h2>
-          <form name="add-form-element" class="popup__input-container">
-            <input type="text" id="add-place-input" name="place" class="popup__input" placeholder="Название">
-            <input type="text" id="add-link-input" name="link" class="popup__input" placeholder="Ссылка на картинку">
+          <form name="cards-form-element" class="popup__input-container">
+            <input type="text" id="cards-place-input" name="place" class="popup__input" placeholder="Название" required>
+            <input type="text" id="cards-link-input" name="link" class="popup__input" placeholder="Ссылка на картинку" type ="url" required>
             <button type="submit" aria-label="Кнопка создать" class="popup__save-button"
-              id="add-save-button">Создать</button>
+              id="cards-save-button">Создать</button>
           </form>
         </div>
       </div>
