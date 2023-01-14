@@ -6,7 +6,6 @@
     border-radius: 10px;
     color: #000000;
     position: relative;
-    border: 1px solid green;
   }
 
   @media screen and (max-width:706px) {
