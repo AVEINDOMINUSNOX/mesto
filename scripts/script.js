@@ -45,11 +45,20 @@ import { initialCards } from './initialCards.js';
 
 /*Открытие попапа*/
 const openPopup = (popup) => {
+  document.addEventListener('keydown', closePopupEsc);
   popup.classList.add('popup_open');
 }
 /*закрытие попапа*/
 const closePopup = (popup) => {
+  document.removeEventListener('keydown', closePopupEsc);
   popup.classList.remove('popup_open');
+}
+/*Закрытие попапа через ESC*/
+const closePopupEsc = (evt) => {
+  if (evt.key === 'Escape') {
+    const popup = document.querySelector('.popup_open');
+    closePopup(popup);
+  }
 }
 
 /*Отображение массива фотокарточек*/
@@ -84,25 +93,6 @@ initialCards.forEach((card) => {
   renderCard(card.name, card.link);
 })
 
-/*Закрытие фотокарточки*/
-imgCloseButton.addEventListener('click', () => { closePopup(imgPopup) })
-/*Закрытие фотокарточки кликом на оверлей*/
-imgPopup.addEventListener('click', function (closedPopup) {
-  if (closedPopup.target === closedPopup.currentTarget) {
-    closePopup(imgPopup);
-  }
-});
-
-/*Сохранение фотокарточки*/
-function saveCard(evt) {
-  evt.preventDefault();
-  renderCard(placeInput.value, linkInput.value);
-  closePopup(cardsPopup);
-  evt.target.reset();
-  evt.submitter.classList.add(validationConfig.inactiveButtonClass)
-  evt.submitter.disabled = true;
-}
-
 /*Открытие попапа добавления фотокарточек*/
 profileAddButton.addEventListener('click', () => { openPopup(cardsPopup) })
 
@@ -115,31 +105,31 @@ profileEditButton.addEventListener('click', () => {
 
 /*Закрытие попапа добавления фотокарточек*/
 cardsCloseButton.addEventListener('click', () => { closePopup(cardsPopup) });
-/*Закрытие попапа добавления фотокарточек кликом на оверлей*/
-cardsPopup.addEventListener('click', function (closedPopup) {
-  if (closedPopup.target === closedPopup.currentTarget) {
-    closePopup(cardsPopup);
-  }
-});
 
 /*Закрытие попапа редактирования данных пользователя*/
 profileCloseButton.addEventListener('click', () => { closePopup(profilePopup) });
 
-/*Закрытие попапа редактирования данных пользователя кликом на оверлей*/
-profilePopup.addEventListener('click', function (closedPopup) {
-  if (closedPopup.target === closedPopup.currentTarget) {
-    closePopup(profilePopup);
-  }
+/*Закрытие попапа фотокарточки*/
+imgCloseButton.addEventListener('click', () => { closePopup(imgPopup) });
+
+/*Закрытие попапа кликом на оверлей*/
+popupList.forEach((popup) => {
+  popup.addEventListener('click', function (closedPopup) {
+    if (closedPopup.target === closedPopup.currentTarget) {
+      closePopup(popup);
+    }
+  })
 });
 
-/*Закрытие попапов кнопкой "Esc"*/
-document.addEventListener('keydown', function (evt) {
-  if (evt.key === "Escape") {
-    closePopup(profilePopup);
-    closePopup(cardsPopup);
-    closePopup(imgPopup);
-  }
-})
+/*Сохранение фотокарточки*/
+function saveCard(evt) {
+  evt.preventDefault();
+  renderCard(placeInput.value, linkInput.value);
+  closePopup(cardsPopup);
+  evt.target.reset();
+  evt.submitter.classList.add(validationConfig.inactiveButtonClass)
+  evt.submitter.disabled = true;
+}
 
 /*Сохранение данных пользователя через нажатие кнопки сохранить*/
 profileFormElement.addEventListener('submit', (evt) => {

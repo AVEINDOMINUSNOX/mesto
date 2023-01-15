@@ -13,7 +13,7 @@
 @media screen and (max-width:706px) {
   .popup__save-button_type_disabled {
     height: 46px;
-    margin: 10px auto 25px auto;
+    margin: 16px auto 25px auto;
     font-size: 14px;
     line-height: 17px;
   }
