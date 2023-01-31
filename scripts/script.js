@@ -2,8 +2,6 @@ import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 import { initialCards } from './initialCards.js';
 
-
-
 const pageContainer = document.querySelector('.page__container');
 const profile = pageContainer.querySelector('.profile');
 
@@ -22,7 +20,6 @@ const imgCloseButton = imgPopup.querySelector('#img-close-button');
 const fullscreenImg = imgPopup.querySelector('.popup__img-fullscreen');
 const figcaptionImg = imgPopup.querySelector('.popup__img-title');
 
-const itemTemplate = document.querySelector('#item-template');
 const itemsContainer = document.querySelector('.elements');
 
 const nameProfile = profile.querySelector('.profile__user-name');
@@ -46,12 +43,11 @@ const validationConfig = {
   errorClass: 'popup__input-field-error_visible'
 };
 
-//валидация форм
+//Валидация форм
 const validationFormProfile = new FormValidator(validationConfig, profileFormElement);
 validationFormProfile.enableValidation();
 const validationFormCard = new FormValidator(validationConfig, cardsFormElement);
 validationFormCard.enableValidation();
-
 
 
 //Описание функций
