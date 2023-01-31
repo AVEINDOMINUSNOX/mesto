@@ -105,7 +105,7 @@ initialCards.forEach((cardElement) => {
 
 //Слушатели событий
 /*Открытие попапа добавления фотокарточек кликом*/
-profileAddButton.addEventListener('click', () => {openPopup(cardsPopup)})
+profileAddButton.addEventListener('click', () => { openPopup(cardsPopup) })
 
 /*Открытия попапа редактирования данных пользователя кликом*/
 profileEditButton.addEventListener('click', () => {

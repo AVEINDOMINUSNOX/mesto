@@ -57,8 +57,8 @@ export default class Card {
     });
 
     this._linkElement.addEventListener('click', () => {
-        this._openCardPopup(this._name, this._link);
-      });
+      this._openCardPopup(this._name, this._link);
+    });
   }
 
   //Генерация карточки
