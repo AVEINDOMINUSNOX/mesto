@@ -17,7 +17,7 @@ export default class FormValidator {
     const errorElement = this._formValidate.querySelector(`.${inputElement.id}-error`);
 
     errorElement.classList.add(this._errorClass);
-    errorElement.textContent = 'inputElement.validationMessage';
+    errorElement.textContent = inputElement.validationMessage;
     inputElement.classList.add(this._inputErrorClass);
   }
 
@@ -55,6 +55,11 @@ export default class FormValidator {
     }
   }
 
+  disableSubmitButton() {
+    this._buttonElement.classList.add(this._inactiveButtonClass);
+    this._buttonElement.disabled = true;
+  }
+
   //Находим список инпутов каждой формы и вешаем обработчики на события инпут
   _setEventListeners() {
     //дизейблим кнопку по умолчанию
@@ -70,6 +75,7 @@ export default class FormValidator {
         this._checkInputValidity(inputElement);
         //устанавливаем дизэйбл для кнопки
         this._toggleButtonState()
+
       })
     })
   }

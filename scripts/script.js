@@ -70,36 +70,42 @@ const closePopupEsc = (evt) => {
 }
 
 /*функция открытия попапа фотокарточки*/
-function cardOpenPopup(name, link) {
+function openCardPopup(name, link) {
   figcaptionImg.textContent = name;
   fullscreenImg.src = link;
   fullscreenImg.alt = name;
   openPopup(imgPopup);
 }
 
+/*Функция создание карточки*/
+function createCard(dataNewCard, _templateSelectorCard) {
+  const addNewCard = new Card(dataNewCard, '.item-template', openCardPopup);
+  return addNewCard.generateCard();
+}
+
+/*Функция добавление картточки*/
+function addCard(cardElement) {
+  itemsContainer.prepend(cardElement);
+}
+
 /*Функция сохранения фотокарточки*/
 function saveCard(evt) {
   evt.preventDefault();
   const dataNewCard = { name: placeInput.value, link: linkInput.value };
-  const addNewCard = new Card(dataNewCard, '.item-template', cardOpenPopup);
-  itemsContainer.prepend(addNewCard.generateCard());
+  addCard(createCard(dataNewCard, '.item-template'));
   closePopup(cardsPopup);
   evt.target.reset();
-  evt.submitter.classList.add(validationConfig.inactiveButtonClass)
-  evt.submitter.disabled = true;
+  validationFormCard.disableSubmitButton();
 }
 
-/*Добавление фотокарточки*/
-initialCards.forEach((data) => {
-  const card = new Card(data, '.item-template', cardOpenPopup);
-  const cardElement = card.generateCard();
-  itemsContainer.prepend(cardElement);
+initialCards.forEach((cardElement) => {
+  addCard(createCard(cardElement, '.item-template'));
 });
 
 
 //Слушатели событий
 /*Открытие попапа добавления фотокарточек кликом*/
-profileAddButton.addEventListener('click', () => { openPopup(cardsPopup) })
+profileAddButton.addEventListener('click', () => {openPopup(cardsPopup)})
 
 /*Открытия попапа редактирования данных пользователя кликом*/
 profileEditButton.addEventListener('click', () => {

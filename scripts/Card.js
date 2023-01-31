@@ -1,11 +1,11 @@
 export default class Card {
 
-  constructor(data, templateSelector, cardOpenPopup) {
+  constructor(data, templateSelector, openCardPopup) {
     this._name = data.name;
     this._link = data.link;
     this._data = data;
     this._templateSelector = templateSelector;
-    this._cardOpenPopup = cardOpenPopup;
+    this._openCardPopup = openCardPopup;
   }
 
   //Находим разметку фотокарточки в html документе, копируем ее и возвращаем
@@ -21,10 +21,9 @@ export default class Card {
 
   // Описываем метод добавления/удаления лайка
   _likeCard() {
-    this._newCard.querySelector('#like-button')
-.classList.toggle('item__like-button_status_active');
+    this._likeButton.classList.toggle('item__like-button_status_active');
   }
-// Описываем метод удаления фотокарточки
+  // Описываем метод удаления фотокарточки
   _deleteCard() {
     this._newCard.remove();
     this._element = null;
@@ -32,6 +31,12 @@ export default class Card {
 
   //Получаем данные для формирования фотокарточки
   _setData() {
+    this._deleteButton = this._newCard
+      .querySelector('#delete-button')
+
+    this._likeButton = this._newCard
+      .querySelector('#like-button')
+
     this._newCard.querySelector('.item__name')
       .textContent = this._name;
 
@@ -41,21 +46,18 @@ export default class Card {
     this._linkElement.alt = this._name;
   }
 
-// Вешаем слушатели событий
+  // Вешаем слушатели событий
   _setEventListeners() {
-    this._newCard.querySelector('#like-button')
-      .addEventListener('click', () => {
-        this._likeCard()
-      });
+    this._likeButton.addEventListener('click', () => {
+      this._likeCard()
+    });
 
-    this._newCard.querySelector('#delete-button')
-      .addEventListener('click', () => {
-        this._deleteCard()
-      });
+    this._deleteButton.addEventListener('click', () => {
+      this._deleteCard()
+    });
 
-    this._newCard.querySelector('.item__image')
-      .addEventListener('click', () => {
-        this._cardOpenPopup(this._name, this._link);
+    this._linkElement.addEventListener('click', () => {
+        this._openCardPopup(this._name, this._link);
       });
   }
 
@@ -67,6 +69,7 @@ export default class Card {
 
     return this._newCard
   }
+
 }
 
 
