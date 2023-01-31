@@ -1,5 +1,8 @@
 import Card from './Card.js';
+import FormValidator from './FormValidator.js';
 import { initialCards } from './initialCards.js';
+
+
 
 const pageContainer = document.querySelector('.page__container');
 const profile = pageContainer.querySelector('.profile');
@@ -42,6 +45,14 @@ const validationConfig = {
   inputErrorClass: 'popup__input-field_type_error',
   errorClass: 'popup__input-field-error_visible'
 };
+
+//валидация форм
+const validationFormProfile = new FormValidator(validationConfig, profileFormElement);
+validationFormProfile.enableValidation();
+const validationFormCard = new FormValidator(validationConfig, cardsFormElement);
+validationFormCard.enableValidation();
+
+
 
 //Описание функций
 /*Открытие попапа*/
@@ -131,7 +142,6 @@ profileFormElement.addEventListener('submit', (evt) => {
 cardsFormElement.addEventListener('submit', saveCard);
 
 
-enableValidation(validationConfig);
 
 
 

@@ -6,11 +6,9 @@ export default class Card {
     this._data = data;
     this._templateSelector = templateSelector;
     this._cardOpenPopup = cardOpenPopup;
-
   }
 
   _getTemplate() {
-
     const card = document
       .querySelector(this._templateSelector)
       .content
@@ -41,7 +39,6 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._setData;
     this._newCard.querySelector('#like-button')
       .addEventListener('click', () => {
         this._likeCard()
@@ -60,10 +57,8 @@ export default class Card {
 
   generateCard() {
     this._newCard = this._getTemplate();
-
     this._setData();
     this._setEventListeners();
-
 
     return this._newCard
   }
