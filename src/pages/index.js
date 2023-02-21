@@ -1,10 +1,10 @@
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
-import Section from './Section.js';
-import PopupWithForm  from './PopupWithForm.js';
-import PopupWithImage from './PopupWithImage.js';
-import UserInfo from './Userinfo.js';
-import { initialCards } from './initialCards.js';
+import Card from '../components/Card';
+import FormValidator from '../components/FormValidator.js';
+import Section from '../components/Section.js';
+import PopupWithForm  from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import UserInfo from '../components/Userinfo.js';
+import { initialCards } from '../utils/initialCards.js';
 import {
   profileEditButton,
   profileAddButton,
@@ -16,7 +16,9 @@ import {
   nameInput,
   jobInput,
   validationConfig
-} from './constants.js';
+} from '../utils/constants.js';
+
+import './pages/index.css';
 
 //Валидация форм
 const validationFormProfile = new FormValidator(validationConfig, profileFormElement);
@@ -84,3 +86,4 @@ profileEditButton.addEventListener('click', () => {
   jobInput.value = job;
   popupEditProfile.open();
 });
+
