@@ -1,11 +1,11 @@
 export default class Card {
 
-  constructor(data, templateSelector, openCardPopup) {
+  constructor(data, templateSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._data = data;
     this._templateSelector = templateSelector;
-    this._openCardPopup = openCardPopup;
+    this._handleCardClick = handleCardClick;
   }
 
   //Находим разметку фотокарточки в html документе, копируем ее и возвращаем
@@ -31,6 +31,9 @@ export default class Card {
 
   //Получаем данные для формирования фотокарточки
   _setData() {
+    this._cardImg = this._newCard
+    .querySelector('.item__image');
+
     this._deleteButton = this._newCard
       .querySelector('#delete-button')
 
@@ -57,7 +60,7 @@ export default class Card {
     });
 
     this._linkElement.addEventListener('click', () => {
-      this._openCardPopup(this._name, this._link);
+      this._handleCardClick(this._name, this._link);
     });
   }
 
