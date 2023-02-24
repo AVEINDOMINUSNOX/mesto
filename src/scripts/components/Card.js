@@ -43,10 +43,9 @@ export default class Card {
     this._newCard.querySelector('.item__name')
       .textContent = this._name;
 
-    this._linkElement = this._newCard
-      .querySelector('.item__image');
-    this._linkElement.src = this._link;
-    this._linkElement.alt = this._name;
+    this._cardImg.src = this._link;
+    this._cardImg.alt = this._name;
+
   }
 
   // Вешаем слушатели событий
@@ -59,9 +58,11 @@ export default class Card {
       this._deleteCard()
     });
 
-    this._linkElement.addEventListener('click', () => {
+    this._cardImg.addEventListener('click', () => {
       this._handleCardClick(this._name, this._link);
     });
+
+
   }
 
   //Генерация карточки

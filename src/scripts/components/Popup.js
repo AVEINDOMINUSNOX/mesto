@@ -1,22 +1,22 @@
 export default class Popup {
 
-  constructor(selectorPopup) {
-    this._selector = selectorPopup;
+  constructor(popupSelector) {
+    this._popup = document.querySelector(popupSelector);
 
     this._handleEscClose = this._handleEscClose.bind(this);
     this._handleOverlayCLose = this._handleOverlayCLose.bind(this);
   }
 
   open() {
-    this._selector.classList.add('popup_open');
+    this._popup.classList.add('popup_open');
     document.addEventListener('keyup', this._handleEscClose);
-    this._selector.addEventListener('click', this._handleOverlayCLose);
+    this._popup.addEventListener('mousedown', this._handleOverlayCLose);
   }
 
   close() {
-    this._selector.classList.remove('popup_open');
+    this._popup.classList.remove('popup_open');
     document.removeEventListener('keyup', this._handleEscClose);
-    this._selector.removeEventListener('click', this._handleOverlayCLose);
+    this._popup.removeEventListener('mousedown', this._handleOverlayCLose);
 
   }
 //Описание закрытия попапа через esc
@@ -34,7 +34,7 @@ export default class Popup {
 
 //Слушатели событий
   setEventListeners() {
-    const closeButton = this._selector.querySelector('.popup__close-button');
+    const closeButton = this._popup.querySelector('.popup__close-button');
 
     closeButton.addEventListener('click', () => {
       this.close();

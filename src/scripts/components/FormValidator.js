@@ -66,8 +66,6 @@ export default class FormValidator {
 
     //перебираем спсок всех инпутов
     this._inputList.forEach((inputElement) => {
-      this._hideInputError(inputElement);
-
       //ставим обработчик на каждый инпут
       inputElement.addEventListener('input', () => {
         // Проверяем валидность, выводим или скрываем ошибку

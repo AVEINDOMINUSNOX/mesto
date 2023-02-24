@@ -1,10 +1,6 @@
 export const profileEditButton = document.querySelector('.profile__edit-button');
 export const profileAddButton = document.querySelector('.profile__add-button');
 
-export const profilePopup = document.querySelector('#profile-form-container');
-export const cardsPopup = document.querySelector('#cards-form-container');
-export const bigImgPopup = document.querySelector('#img-container');
-
 export const profileFormElement = document.forms["profile-form-element"];
 export const cardsFormElement = document.forms["cards-form-element"];
 

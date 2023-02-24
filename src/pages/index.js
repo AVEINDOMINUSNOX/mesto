@@ -8,9 +8,6 @@ import { initialCards } from '../scripts/utils/initialCards.js';
 import {
   profileEditButton,
   profileAddButton,
-  profilePopup,
-  cardsPopup,
-  bigImgPopup,
   profileFormElement,
   cardsFormElement,
   nameInput,
@@ -30,23 +27,24 @@ validationFormCard.enableValidation();
 //Данные о пользователе
 const userInfo = new UserInfo('.profile__user-name','.profile__user-specialization') ;
 //Форма редактирования данных пользователя
-const popupEditProfile = new PopupWithForm(profilePopup, profileSubmit);
+const popupEditProfile = new PopupWithForm('#profile-form-container', handleProfileSubmit);
 popupEditProfile.setEventListeners();
 
-function profileSubmit(data) {
+function handleProfileSubmit(data) {
   userInfo.setUserInfo(data['name'], data['specialization']);
   popupEditProfile.close();
 }
 
 //Фотокарточки
 //Попап фотокарточки
-const imgPopup = new PopupWithImage(bigImgPopup);
+const imgPopup = new PopupWithImage('#img-container');
+imgPopup.setEventListeners();
 
 //Форма добаления фотокарточки
-const popupAddCard = new PopupWithForm(cardsPopup, cardSubmit)
+const popupAddCard = new PopupWithForm('#cards-form-container', handleCardSubmit)
 popupAddCard.setEventListeners();
 
-function cardSubmit(data) {
+function handleCardSubmit(data) {
   const dataCard = { name: data['place'], link: data['link'] };
   renderCard.addItem(createCard(dataCard, ".item-template"));
   popupAddCard.close();
@@ -59,7 +57,6 @@ function createCard(data) {
 //Открытие попапа фотокарточки
 function handleCardClick(name, link) {
   imgPopup.open(name, link);
-  imgPopup.setEventListeners();
 }
 //Отрисовываем фотокарточку
 const renderCard = new Section({
@@ -76,6 +73,7 @@ renderCard.renderItems();
 //Слушатели событий
 //Открытие попапа добавления фотокарточки
 profileAddButton.addEventListener('click', () => {
+  validationFormCard.disableSubmitButton()
   popupAddCard.open();
 });
 
