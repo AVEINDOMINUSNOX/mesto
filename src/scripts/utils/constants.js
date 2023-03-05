@@ -1,8 +1,10 @@
 export const profileEditButton = document.querySelector('.profile__edit-button');
 export const profileAddButton = document.querySelector('.profile__add-button');
+export const editAvatarButton = document.querySelector('.profile__overlay');
 
 export const profileFormElement = document.forms["profile-form-element"];
 export const cardsFormElement = document.forms["cards-form-element"];
+export const avatarFormElement = document.forms["avatar-form-element"];
 
 export const nameInput = profileFormElement.elements.name;
 export const jobInput = profileFormElement.elements.specialization;

@@ -10,6 +10,7 @@
   grid-template-areas:
     "image image"
     "image image"
-    "name button";
+    "name button"
+    "name counter";
 }
 

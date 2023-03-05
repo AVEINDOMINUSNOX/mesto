@@ -1,10 +1,11 @@
-.profile__avatar {
-  background-image: url(../../../images/image.png);
+.profile__avatar{
+
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   width: 120px;
   height: 120px;
+  object-fit: cover;
   border-radius: 100%;
-  margin: 0;
+  display: block;
 }

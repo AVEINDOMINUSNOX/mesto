@@ -1,11 +1,20 @@
 export default class Card {
 
-  constructor(data, templateSelector, handleCardClick) {
+  constructor(data, isOwner, templateSelector, handleCardClick,
+    { handleAddLikeClick, handleDeleteLikeClick, handleDeleteCard }) {
     this._name = data.name;
     this._link = data.link;
-    this._data = data;
+    this._id = data.id;
+    this._likes = data.likes;
+    this._owner = data.owner;
+    this._isOwner = isOwner;
     this._templateSelector = templateSelector;
+
     this._handleCardClick = handleCardClick;
+    this._handleAddLikeClick = handleAddLikeClick;
+    this._handleDeleteLikeClick = handleDeleteLikeClick;
+    this._handleDeleteCard = handleDeleteCard;
+    this._delete = this._delete.bind(this);
   }
 
   //Находим разметку фотокарточки в html документе, копируем ее и возвращаем
@@ -20,22 +29,46 @@ export default class Card {
   }
 
   // Описываем метод добавления/удаления лайка
-  _likeCard() {
+  likeCard() {
     this._likeButton.classList.toggle('item__like-button_status_active');
   }
+
+  // Обновляем количество лайков
+  updateCounterLikes(counter) {
+    this._newCard.querySelector(".item__like-counter").textContent =
+      counter > 0 ? counter : "";
+  }
+
+  // Отрисовываем лайки пользователя
+  _renderLike() {
+    this._likes.forEach(() => {
+      if (this._isOwner) {
+   this._LikeButton.classList.add("item__like-button_status_active");
+      }
+    });
+  }
+
+
+
   // Описываем метод удаления фотокарточки
-  _deleteCard() {
+  remove() {
     this._newCard.remove();
-    this._element = null;
+    this._newCard = null;
+  }
+
+  _delete() {
+    this._handleDeleteCard(this._id);
   }
 
   //Получаем данные для формирования фотокарточки
   _setData() {
-    this._cardImg = this._newCard
-    .querySelector('.item__image');
+    this._likeCounter = this._newCard
+      .querySelector(".item__like-counter");
 
-    this._deleteButton = this._newCard
-      .querySelector('#delete-button')
+    this._cardImg = this._newCard
+      .querySelector('.item__image');
+
+
 
     this._likeButton = this._newCard
       .querySelector('#like-button')
@@ -51,30 +84,53 @@ export default class Card {
   // Вешаем слушатели событий
   _setEventListeners() {
     this._likeButton.addEventListener('click', () => {
-      this._likeCard()
+      if (this._likeButton.classList.contains("item__like-button_status_active"))
+        this._handleDeleteLikeClick();
+      else
+        this._handleAddLikeClick();
     });
 
-    this._deleteButton.addEventListener('click', () => {
-      this._deleteCard()
-    });
-
+    /*  this._deleteButton.addEventListener('click', () => {
+       this.remove()
+     });
+  */
     this._cardImg.addEventListener('click', () => {
       this._handleCardClick(this._name, this._link);
     });
 
 
+
+    /* this._cardImg.addEventListener('error', (error) => {
+      this._cardImage.src = require();
+    }) */
+
   }
+
+
+     //отрисовать иконку "удалить" только у карточек владельца
+     _renderWastebasket() {
+      if (this._isOwner) {
+        this._deleteButton = this._newCard.querySelector('.item__del-button')
+         this._deleteButton.classList.add('.item__del-button_status_active');
+          this._deleteButton.addEventListener("click", () => {
+            this._handleDeleteCard(this._id);
+          });
+      }
+    }
 
   //Генерация карточки
   generateCard() {
     this._newCard = this._getTemplate();
     this._setData();
     this._setEventListeners();
-
+     this._renderWastebasket();
+    this.updateCounterLikes(this._likes.length);
+   // this._renderLike();
     return this._newCard
   }
 
 }
+
 
 
 

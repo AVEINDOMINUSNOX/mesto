@@ -3,6 +3,7 @@
   max-width: calc(100% - 400px);
   display: flex;
   flex-direction: row;
+
 }
 
 @media screen and (max-width: 1279px) {
