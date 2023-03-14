@@ -4,8 +4,7 @@ import Section from '../scripts/components/Section.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import UserInfo from '../scripts/components/Userinfo.js';
-import PopupConfirm from '../scripts/components/PopupConfirmation.js';
-import { initialCards } from '../scripts/utils/initialCards.js';
+import PopupConfirmation from '../scripts/components/PopupConfirmation.js';
 import {
   profileEditButton,
   profileAddButton,
@@ -30,73 +29,46 @@ const api = new Api({
 });
 
 
-
-
-
-
 //Аватар
 const popupEditAvatar = new PopupWithForm("#avatar-form-container", handleAvatarSubmit);
 popupEditAvatar.setEventListeners();
 
 function handleAvatarSubmit(data) {
-  popupEditAvatar.renderLoading("Обновление...");
+  popupEditAvatar.loading("Обновление...");
   api.saveAvatar(data["link-avatar"])
-    .then((userData) => {
-      userInfo.setUserAvatar(userData.avatar);
+    .then((data) => {
+      userInfo.setUserAvatar(data.avatar);
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
-      popupEditAvatar.renderLoading("Сохранить");
+      popupEditAvatar.loading("Сохранить");
       popupEditAvatar.close();
     });
 }
 
-
-editAvatarButton.addEventListener("click", () => {
-  popupEditAvatar.open();
-});
-
-
 //Данные о пользователе
 const userInfo = new UserInfo('.profile__user-name', '.profile__user-specialization', '.profile__avatar');
-//Форма редактирования данных пользователя
 
+//Форма редактирования данных пользователя
 const popupEditProfile = new PopupWithForm('#profile-form-container', handleProfileSubmit);
 popupEditProfile.setEventListeners();
 
-/* function handleProfileSubmit(data) {
-  userInfo.setUserInfo(data['name'], data['specialization']);
-  popupEditProfile.close();
-} */
-
 function handleProfileSubmit(data) {
-  popupEditProfile.renderLoading("Обновление...");
+  popupEditProfile.loading("Обновление...");
   api.saveUserInfo(data['name'], data['specialization'])
     .then((userData) => {
       userInfo.setUserInfo(userData.name, userData.about);
       popupEditProfile.close();
     })
-    /* .catch((err) => {
+    .catch((err) => {
       console.log(err);
-    }) */
+    })
     .finally(() => {
-      popupEditProfile.renderLoading("Сохранить");
+      popupEditProfile.loading("Сохранить");
     });
 }
-
-
-
-const popupConfirmDelete = new PopupConfirm("#confirmation-container");
-popupConfirmDelete.setEventListeners();
-
-
-
-
-
-
-
 
 
 //Фотокарточки
@@ -105,229 +77,102 @@ const imgPopup = new PopupWithImage('#img-container');
 imgPopup.setEventListeners();
 
 
+//Попап подтверждения удаления фотокарточки
+const popupConfirmation = new PopupConfirmation("#confirmation-container");
+popupConfirmation.setEventListeners();
 
 
 // Узнаем является ли пользователь владельцем фотокарточки?
-const isOwner = (cardId) => {
-  return cardId.owner._id === userInfo.getUserInfo().id ? true : false;
+const isOwner = (card) => {
+  return card.owner._id === userInfo.getUserInfo().id ? true : false;
 };
 
 
-
-
-
-/* //Форма добаления фотокарточки
+//Форма добаления фотокарточки
 const popupAddCard = new PopupWithForm('#cards-form-container', handleCardSubmit)
 popupAddCard.setEventListeners();
 
 function handleCardSubmit(data) {
-  const dataCard = { name: data['place'], link: data['link'] };
-  renderCard.addItem(createCard(dataCard, ".item-template"));
-  popupAddCard.close();
-}
-//Создаем фотокарточку
-function createCard(data) {
-  const newAddCard = new Card(data, ".item-template", handleCardClick);
-  return newAddCard.generateCard();
-}
-//Открытие попапа фотокарточки
-function handleCardClick(name, link) {
-  imgPopup.open(name, link);
-}
-//Отрисовываем фотокарточку
-const renderCard = new Section({
-  items: initialCards,
-  renderer: (item) => {
-    const newCard = createCard(item, ".item-template");
-    renderCard.addItem(newCard);
-  }
-}, '.elements');
-//Отображаем фотокарточку на странице
-renderCard.renderItems();
- */
-
-/* */
-
-//---------------------------------------
-
-//создание списка карточек для отображения
-const renderCard = new Section(
-  {
-    renderer: (item) => {
-      const _isOwner = isOwner(item);
-      //создание карточки
-      const card = createCard(item, _isOwner, ".item-template");
-      //добавление карточки
-      renderCard.addItem(card);
-    },
-  },
-  ".elements"
-);
-
-const popupAddCard = new PopupWithForm('#cards-form-container', handleCardSubmit)
-popupAddCard.setEventListeners();
-
-function handleCardSubmit(data) {
-  popupAddCard.renderLoading("Сохранение...");
+  popupAddCard.loading("Сохранение...");
   const dataCard = { name: data['place'], link: data['link'] };
   api
     .postCard(dataCard)
     .then((data) => {
       renderCard.addItem(createCard(data, true, ".item-template"));
-
       popupAddCard.close();
     })
-    .catch((error) => {
-      console.log(error.message);
+    .catch((err) => {
+      console.log(err.message);
     })
     .finally(() => {
-      popupAddCard.renderLoading("Создать");
+      popupAddCard.loading("Создать");
     });
 }
 
-function createCard(dataCard, _isOwner) {
-  const card = new Card(dataCard, _isOwner, ".item-template", handleCardClick,
-
-  //Установка лайка
-     {handleAddLikeClick: () => {
-      api
-        .setLikeCard(dataCard._id)
-        .then((dataCard) => {
-          card.likeCard();
-          card.updateCounterLikes(dataCard.likes.length);
-        })
-        .catch((error) => {
-          console.log(error.message);
-        });
-    },
-    //Удаление лайка
+//Создаем фотокарточку
+function createCard(data, owner) {
+  const card = new Card(data, owner, ".item-template", handleCardClick,
+  { //Установка лайка
+      handleAddLikeClick: () => {
+        api.setLikeCard(data._id)
+          .then((data) => {
+            card.likeCard();
+            card.counterLikes(data.likes.length);
+          })
+          .catch((err) => {
+            console.log(err.message);
+          });
+      },
+      //Удаление лайка
       handleDeleteLikeClick: () => {
-      api
-        .deleteLike(dataCard._id)
-        .then((dataCard) => {
-          card.likeCard();
-          card.updateCounterLikes(dataCard.likes.length);
-        })
-        .catch((error) => {
-          console.log(error.message);
-        });
-    },
+        api.deleteLikeCard(data._id)
+          .then((data) => {
+            card.likeCard();
+            card.counterLikes(data.likes.length);
+          })
+          .catch((err) => {
+            console.log(err.message);
+          });
+      },
 
-    //Удаление фотокарточки владельцем
-    handleDeleteCard:() => {
-      popupConfirmDelete.open({
-        remove: () => {
-          api
-            .deleteCard(dataCard)
-            .then(() => {
-              card.remove();
-            })
-            .catch((error) => {
-              console.log(error.message);
-            })
-            .finally(() => {
-              popupConfirmDelete.close();
-            });
-        },
-      });
-    },
-  });
+      //Удаление фотокарточки
+      handleDeleteCard: () => {
+        popupConfirmation.open({
+          handleSubmit: () => {
+            api.deleteCard(data._id)
+              .then(() => {
+                card.remove();
+                popupConfirmation.close();
+              })
+              .catch((err) => {
+                console.log(err.message);
+              })
+              .finally(() => {
+              popupConfirmation.loading("Удаление")
+              });
+          },
+        });
+      },
+    });
   return card.generateCard();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+//Отрисовываем фотокарточку
+const renderCard = new Section({
+    renderer: (item) => {
+      const owner = isOwner(item);
+      const newCard = createCard(item, owner, ".item-template");
+      //Отображаем фотокарточку на странице
+      renderCard.addItem(newCard);
+    },
+  },
+  ".elements"
+);
 
 //Открытие попапа фотокарточки
 function handleCardClick(name, link) {
   imgPopup.open(name, link);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//-------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //Слушатели событий
 //Открытие попапа добавления фотокарточки
@@ -344,13 +189,13 @@ profileEditButton.addEventListener('click', () => {
   popupEditProfile.open();
 });
 
+//Открытие попапа редактирования аватара
+editAvatarButton.addEventListener("click", () => {
+  validationFormAvatar.disableSubmitButton()
+  popupEditAvatar.open();
+});
 
-const confirmationButton = document.querySelector('#confirmation-button');
-
-
-
-
-//Отображение дефолтных данных о пользователе и фотокарточек
+//Отображение дефолтных данных о пользователе и фотокарточках
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([user, cards]) => {
     userInfo.setUserId(user._id);
