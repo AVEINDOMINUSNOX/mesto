@@ -38,13 +38,13 @@ function handleAvatarSubmit(data) {
   api.saveAvatar(data["link-avatar"])
     .then((data) => {
       userInfo.setUserAvatar(data.avatar);
+      popupEditAvatar.close();
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
       popupEditAvatar.loading("Сохранить");
-      popupEditAvatar.close();
     });
 }
 
@@ -141,14 +141,14 @@ function createCard(data, owner) {
           handleSubmit: () => {
             api.deleteCard(data._id)
               .then(() => {
-                card.remove();
+                card.removeCard();
                 popupConfirmation.close();
               })
               .catch((err) => {
                 console.log(err.message);
               })
               .finally(() => {
-              popupConfirmation.loading("Удаление")
+              popupConfirmation.loading("Да")
               });
           },
         });

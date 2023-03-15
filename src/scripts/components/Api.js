@@ -1,18 +1,20 @@
-const handleResponse = (res) => {
-  if (res.ok) {
-    return res.json();
-  }
-
-  return Promise.reject(`Ошибка: ${res.status}`);
-}
-
-
-
 export default class Api {
   constructor(config) {
     this.url = config.url;
     this.headers = config.headers;
   }
+
+
+  _handleResponse = (res) => {
+    if (res.ok) {
+      return res.json();
+    }
+
+    return Promise.reject(`Ошибка: ${res.status}`);
+  }
+
+
+
 
   //Пользователь
   //Получаем инф-ию о пользователе
@@ -20,7 +22,7 @@ export default class Api {
     return fetch(`${this.url}/users/me`, {
       headers: this.headers,
       method: 'GET',
-    }).then(handleResponse)
+    }).then(this._handleResponse)
   }
 
   // Cохраняем данные пользователя
@@ -33,7 +35,7 @@ export default class Api {
         about: about,
       }),
     })
-      .then(handleResponse)
+      .then(this._handleResponse)
   }
 
   // Сохраняем Аватар
@@ -45,7 +47,7 @@ export default class Api {
         avatar: avatar,
       }),
     })
-      .then(handleResponse)
+      .then(this._handleResponse)
   }
 
 
@@ -57,7 +59,7 @@ export default class Api {
       headers: this.headers,
       method: 'GET'
     })
-      .then(handleResponse)
+      .then(this._handleResponse)
   }
 
   postCard(data) {
@@ -66,7 +68,7 @@ export default class Api {
       method: 'POST',
       body: JSON.stringify(data),
     })
-      .then(handleResponse)
+      .then(this._handleResponse)
   }
 
   deleteCard(cardId) {
@@ -74,7 +76,7 @@ export default class Api {
       headers: this.headers,
       method: 'DELETE'
     })
-      .then(handleResponse)
+      .then(this._handleResponse)
   }
 
   setLikeCard(cardId) {
@@ -82,7 +84,7 @@ export default class Api {
       headers: this.headers,
       method: 'PUT'
     })
-      .then(handleResponse)
+      .then(this._handleResponse)
   }
 
   deleteLikeCard(cardId) {
@@ -90,6 +92,6 @@ export default class Api {
       headers: this.headers,
       method: 'DELETE'
     })
-      .then(handleResponse)
+      .then(this._handleResponse)
   }
 }

@@ -10,7 +10,6 @@ export default class Popup {
   open() {
     this._popup.classList.add('popup_open');
     document.addEventListener('keyup', this._handleEscClose);
-    this._popup.addEventListener('mousedown', this._handleOverlayCLose);
   }
 
   close() {
@@ -39,5 +38,7 @@ export default class Popup {
     closeButton.addEventListener('click', () => {
       this.close();
     });
+//Но ведь тогда закрытие по оверлею на каждом попапе срабатывает только один раз после загрузки страницы
+    this._popup.addEventListener('mousedown', this._handleOverlayCLose);
 }
 }

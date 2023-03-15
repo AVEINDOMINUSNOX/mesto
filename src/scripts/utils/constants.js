@@ -17,3 +17,6 @@ export const validationConfig = {
   inputErrorClass: 'popup__input-field_type_error',
   errorClass: 'popup__input-field-error_visible'
 };
+
+// Создаем пустой объект
+export const inputValues = {};

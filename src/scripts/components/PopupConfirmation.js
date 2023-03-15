@@ -4,6 +4,7 @@ export default class PopupConfirmation extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
     this._form = this._popup.querySelector('.popup__input-container');
+    this._buttonConfirm = this._form.querySelector(".popup__save-button");
     this.handleSubmit = undefined;
   }
 
@@ -18,14 +19,14 @@ export default class PopupConfirmation extends Popup {
   }
 
   loading(text) {
-    this._form.querySelector(".popup__save-button").textContent = text;
+    this._buttonConfirm.textContent = text;
   }
 
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener("submit", (event) => {
       event.preventDefault();
-     this.handleSubmit();
+      this.handleSubmit();
 
     });
   }

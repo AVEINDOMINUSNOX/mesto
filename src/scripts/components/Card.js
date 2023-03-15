@@ -51,7 +51,7 @@ export default class Card {
   }
 
   // Описываем метод удаления фотокарточки
-  remove() {
+  removeCard() {  //Думал, что для наглядности можно назвать метод ремув, чтобы была отсылка к  this._newCard.remove(); Буду иметь в виду, что так делать опасно
     this._newCard.remove();
     this._newCard = null;
   }
